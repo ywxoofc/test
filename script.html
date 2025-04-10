@@ -121,16 +121,12 @@
 </head>
 <body>
 
-  <!-- Suchfeld -->
   <div class="search-container">
     <input type="text" class="search-box" id="searchInput" placeholder="Suche nach Titel..." oninput="filterCards()">
   </div>
-
-  <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
   <button class="copy-button" onclick="copyCode()">Copy</button>
 
-  <!-- Kartenbereich -->
   <div class="cards-container">
     <!-- Card 1 -->
     <div class="card" data-title="Banana Ride Into Monkey">
@@ -192,7 +188,7 @@
     }
 
     function copyScript() {
-      const scriptText = "test"; // Der Text, der kopiert werden soll
+      const scriptText = "test";
       navigator.clipboard.writeText(scriptText).then(() => {
         alert("Script kopiert!");
       });
@@ -201,14 +197,23 @@
     function filterCards() {
       const searchValue = document.getElementById('searchInput').value.toLowerCase();
       const cards = document.querySelectorAll('.card');
+      const cardsContainer = document.querySelector('.cards-container');
+
+      let matchedCards = [];
+      let unmatchedCards = [];
+
       cards.forEach(card => {
         const title = card.getAttribute('data-title').toLowerCase();
         if (title.includes(searchValue)) {
-          card.classList.remove('hidden');
+          matchedCards.push(card);
         } else {
-          card.classList.add('hidden');
+          unmatchedCards.push(card);
         }
       });
+
+      cardsContainer.innerHTML = '';
+      matchedCards.forEach(card => cardsContainer.appendChild(card));
+      unmatchedCards.forEach(card => cardsContainer.appendChild(card));
     }
   </script>
 
