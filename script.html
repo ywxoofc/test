@@ -65,7 +65,7 @@
 </head>
 <body>
 
-  <div class="code-box" id="code">print'test'</div>
+  <div class="code-box" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()'</div>
 
   <div class="button-row">
     <button class="copy-button" onclick="copyCode()">Copy</button>
@@ -80,7 +80,7 @@
     function copyCode() {
       const codeText = document.getElementById("code").innerText;
       navigator.clipboard.writeText(codeText).then(() => {
-        alert("Code kopiert!");
+        alert("Copied");
       });
     }
 
