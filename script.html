@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Script Ansicht</title>
-
-   <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
-
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      padding: 40px 20px;
       background-color: #121212;
       color: white;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
     }
 
     pre {
@@ -45,22 +41,112 @@
     .copy-button:hover {
       background-color: #444;
     }
+
+    .cards-container {
+      margin-top: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .card {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      display: flex;
+      width: 500px;
+      padding: 15px;
+      gap: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .card-desc {
+      font-size: 0.95em;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    .card pre {
+      margin-bottom: 10px;
+      max-width: 100%;
+      padding: 10px;
+    }
+
+    .card .copy-button {
+      align-self: flex-start;
+      font-size: 0.9em;
+      padding: 6px 14px;
+    }
   </style>
 </head>
 <body>
 
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
-
   <button class="copy-button" onclick="copyCode()">Copy</button>
+
+  <div class="cards-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+1" alt="Game 1">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 1</div>
+          <div class="card-desc">Ein cooles Spiel mit Abenteuern.</div>
+          <pre><code class="language-lua" id="script1">print("Hallo Spiel 1")</code></pre>
+        </div>
+        <button class="copy-button" onclick="copyScript('script1')">Copy</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+2" alt="Game 2">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 2</div>
+          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+          <pre><code class="language-lua" id="script2">print("Spiel 2 aktiviert!")</code></pre>
+        </div>
+        <button class="copy-button" onclick="copyScript('script2')">Copy</button>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
-
   <script>
     function copyCode() {
       const codeText = document.getElementById("code").innerText;
       navigator.clipboard.writeText(codeText).then(() => {
         alert("Copied");
+      });
+    }
+
+    function copyScript(id) {
+      const codeText = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        alert("Script kopiert!");
       });
     }
   </script>
