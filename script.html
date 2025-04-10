@@ -87,16 +87,6 @@
       color: #ccc;
     }
 
-    .card pre {
-      margin-bottom: 10px;
-      max-width: 100%;
-      padding: 10px;
-      height: 100px; /* Feste Höhe für die Lua-Box */
-      overflow: hidden; /* Überlauf wird versteckt */
-      text-overflow: ellipsis; /* Text wird mit "..." abgeschnitten */
-      white-space: nowrap; /* Keine Umbrüche */
-    }
-
     .card .copy-button {
       align-self: flex-start;
       font-size: 0.9em;
@@ -119,13 +109,46 @@
         <div>
           <div class="card-title">Banana Ride Into Monkey</div>
           <div class="card-desc">Trolling Script</div>
-          <pre><code class="language-lua" id="script1">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/6977519648.lua"))()</code></pre>
         </div>
-        <button class="copy-button" onclick="copyScript('script1')">Copy</button>
+        <button class="copy-button" onclick="copyScript()">Copy Script</button>
       </div>
     </div>
 
-    <!-- Weitere Karten -->
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 2</div>
+          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+        </div>
+        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 2</div>
+          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+        </div>
+        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 2</div>
+          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+        </div>
+        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
@@ -138,9 +161,9 @@
       });
     }
 
-    function copyScript(id) {
-      const codeText = document.getElementById(id).innerText; 
-      navigator.clipboard.writeText(codeText).then(() => {
+    function copyScript() {
+      const scriptText = "test"; // Der Text, der kopiert werden soll
+      navigator.clipboard.writeText(scriptText).then(() => {
         alert("Script kopiert!");
       });
     }
