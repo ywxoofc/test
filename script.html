@@ -87,25 +87,14 @@
       color: #ccc;
     }
 
-    /* Anpassen der Lua Code Box für die Hauptansicht */
     .card pre {
       margin-bottom: 10px;
       max-width: 100%;
       padding: 10px;
-    }
-
-    /* Sicherstellen, dass der Textbereich für die Cards nicht abgeschnitten wird */
-    .card pre {
-      white-space: pre-wrap; 
-      overflow: visible;
-      text-overflow: unset;
-    }
-
-    /* Für die Hauptansicht: Code wird abgeschnitten */
-    #code {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      height: 100px; /* Feste Höhe für die Lua-Box */
+      overflow: hidden; /* Überlauf wird versteckt */
+      text-overflow: ellipsis; /* Text wird mit "..." abgeschnitten */
+      white-space: nowrap; /* Keine Umbrüche */
     }
 
     .card .copy-button {
