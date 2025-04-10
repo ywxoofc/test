@@ -87,21 +87,25 @@
       color: #ccc;
     }
 
-    /* Anpassen der Lua Code Box */
+    /* Anpassen der Lua Code Box für die Hauptansicht */
     .card pre {
       margin-bottom: 10px;
       max-width: 100%;
       padding: 10px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
 
-    /* Sicherstellen, dass der Textbereich immer noch genug Platz bietet */
-    .card pre.full-text {
+    /* Sicherstellen, dass der Textbereich für die Cards nicht abgeschnitten wird */
+    .card pre {
       white-space: pre-wrap; 
       overflow: visible;
       text-overflow: unset;
+    }
+
+    /* Für die Hauptansicht: Code wird abgeschnitten */
+    #code {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .card .copy-button {
@@ -126,7 +130,7 @@
         <div>
           <div class="card-title">Banana Ride Into Monkey</div>
           <div class="card-desc">Trolling Script</div>
-          <pre><code class="language-lua" id="script1" class="full-text">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/6977519648.lua"))()</code></pre>
+          <pre><code class="language-lua" id="script1">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/6977519648.lua"))()</code></pre>
         </div>
         <button class="copy-button" onclick="copyScript('script1')">Copy</button>
       </div>
