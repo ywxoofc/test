@@ -68,6 +68,7 @@
       justify-content: center;
       width: 100%;
       max-width: 1200px;
+      transition: all 0.3s ease;
     }
 
     .card {
@@ -121,13 +122,17 @@
 </head>
 <body>
 
+  <!-- Suchfeld -->
   <div class="search-container">
     <input type="text" class="search-box" id="searchInput" placeholder="Suche nach Titel..." oninput="filterCards()">
   </div>
+
+  <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
   <button class="copy-button" onclick="copyCode()">Copy</button>
 
-  <div class="cards-container">
+  <!-- Kartenbereich -->
+  <div class="cards-container" id="cardsContainer">
     <!-- Card 1 -->
     <div class="card" data-title="Banana Ride Into Monkey">
       <img src="https://tr.rbxcdn.com/180DAY-d3592f0717377abf044daab1b37726b2/512/512/Image/Webp/noFilter" alt="Banana Ride Into Monkey">
@@ -196,24 +201,27 @@
 
     function filterCards() {
       const searchValue = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.card');
-      const cardsContainer = document.querySelector('.cards-container');
-
-      let matchedCards = [];
-      let unmatchedCards = [];
-
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(searchValue)) {
-          matchedCards.push(card);
-        } else {
-          unmatchedCards.push(card);
-        }
+      const cards = Array.from(document.querySelectorAll('.card'));
+      const container = document.getElementById('cardsContainer');
+      
+      const filteredCards = cards.filter(card => card.getAttribute('data-title').toLowerCase().includes(searchValue));
+      const hiddenCards = cards.filter(card => !card.getAttribute('data-title').toLowerCase().includes(searchValue));
+      
+      hiddenCards.forEach(card => {
+        card.classList.add('hidden');
       });
-
-      cardsContainer.innerHTML = '';
-      matchedCards.forEach(card => cardsContainer.appendChild(card));
-      unmatchedCards.forEach(card => cardsContainer.appendChild(card));
+      
+      filteredCards.forEach(card => {
+        card.classList.remove('hidden');
+        container.appendChild(card);
+      });
+      
+      if (searchValue === '') {
+        hiddenCards.forEach(card => {
+          card.classList.remove('hidden');
+          container.appendChild(card);
+        });
+      }
     }
   </script>
 
