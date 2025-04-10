@@ -42,25 +42,20 @@
       background-color: #444;
     }
 
-    .search-container {
-      margin-bottom: 20px;
-      width: 100%;
-      max-width: 600px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .search-box {
-      width: 100%;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background-color: #2a2a2a;
+    .search-bar {
+      background-color: #1e1e1e;
       color: white;
+      padding: 10px;
+      border-radius: 6px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      border: none;
+      font-size: 1em;
     }
 
     .cards-container {
+      margin-top: 60px;
       margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
@@ -76,16 +71,14 @@
       border-radius: 10px;
       display: flex;
       width: 500px;
+      width: 30%;
+      min-width: 300px;
       padding: 15px;
       gap: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
       opacity: 1;
       transition: opacity 0.3s ease;
-    }
-
-    .card.hidden {
-      opacity: 0;
-      pointer-events: none;
     }
 
     .card img {
@@ -113,71 +106,75 @@
       color: #ccc;
     }
 
+    .card pre {
+      margin-bottom: 10px;
+      max-width: 100%;
+      padding: 10px;
+    }
+
     .card .copy-button {
       align-self: flex-start;
       font-size: 0.9em;
       padding: 6px 14px;
     }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Suchfeld -->
-  <div class="search-container">
-    <input type="text" class="search-box" id="searchInput" placeholder="Suche nach Titel..." oninput="filterCards()">
-  </div>
-
-  <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
   <button class="copy-button" onclick="copyCode()">Copy</button>
+  <input type="text" id="searchInput" class="search-bar" placeholder="Suche nach Spieltitel..." oninput="filterCards()">
 
-  <!-- Kartenbereich -->
   <div class="cards-container" id="cardsContainer">
     <!-- Card 1 -->
-    <div class="card" data-title="Banana Ride Into Monkey">
-      <img src="https://tr.rbxcdn.com/180DAY-d3592f0717377abf044daab1b37726b2/512/512/Image/Webp/noFilter" alt="Banana Ride Into Monkey">
+    <div class="card" data-title="Spiel 1">
+      <img src="https://tr.rbxcdn.com/180DAY-e89d14696f0275a9a62aaed2c398bdb8/512/512/Image/Webp/noFilter" alt="Game 1">
       <div class="card-content">
         <div>
-          <div class="card-title">Banana Ride Into Monkey</div>
-          <div class="card-desc">Trolling Script<br>Heheheha<br>lulululul<br>eh idk</div>
+          <div class="card-title">Spiel 1</div>
+          <div class="card-desc">Ein cooles Spiel mit Abenteuern.</div>
+          <pre><code class="language-lua" id="script1">print("Hallo Spiel 1")</code></pre>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript('script1')">Copy</button>
       </div>
     </div>
 
     <!-- Card 2 -->
     <div class="card" data-title="Spiel 2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+2" alt="Game 2">
       <div class="card-content">
         <div>
           <div class="card-title">Spiel 2</div>
           <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+          <pre><code class="language-lua" id="script2">print("Spiel 2 aktiviert!")</code></pre>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript('script2')">Copy</button>
       </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="card" data-title="Spiel 2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
+    <div class="card" data-title="Spiel 3">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+3" alt="Game 3">
       <div class="card-content">
         <div>
-          <div class="card-title">Spiel 2</div>
-          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
+          <div class="card-title">Spiel 3</div>
+          <div class="card-desc">Das beste Spiel aller Zeiten!</div>
+          <pre><code class="language-lua" id="script3">print("Spiel 3 wird geladen")</code></pre>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="card" data-title="Spiel 2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
-      <div class="card-content">
-        <div>
-          <div class="card-title">Spiel 2</div>
-          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢<br>Trolling Script<br>Heheheha</div>
-        </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript('script3')">Copy</button>
       </div>
     </div>
   </div>
@@ -192,36 +189,29 @@
       });
     }
 
-    function copyScript() {
-      const scriptText = "test";
-      navigator.clipboard.writeText(scriptText).then(() => {
+    function copyScript(id) {
+      const codeText = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
         alert("Script kopiert!");
       });
     }
 
     function filterCards() {
-      const searchValue = document.getElementById('searchInput').value.toLowerCase();
-      const cards = Array.from(document.querySelectorAll('.card'));
+      const searchInput = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
       const container = document.getElementById('cardsContainer');
-      
-      const filteredCards = cards.filter(card => card.getAttribute('data-title').toLowerCase().includes(searchValue));
-      const hiddenCards = cards.filter(card => !card.getAttribute('data-title').toLowerCase().includes(searchValue));
-      
-      hiddenCards.forEach(card => {
-        card.classList.add('hidden');
+
+      // Karten filtern und verschieben
+      cards.forEach(card => {
+        const title = card.getAttribute("data-title").toLowerCase();
+        
+        if (title.includes(searchInput)) {
+          card.style.display = "flex";  // Zeigt die Karte an
+          container.insertBefore(card, container.firstChild);  // Verschiebt die Karte nach oben
+        } else {
+          card.style.display = "none";  // Versteckt die Karte
+        }
       });
-      
-      filteredCards.forEach(card => {
-        card.classList.remove('hidden');
-        container.appendChild(card);
-      });
-      
-      if (searchValue === '') {
-        hiddenCards.forEach(card => {
-          card.classList.remove('hidden');
-          container.appendChild(card);
-        });
-      }
     }
   </script>
 
