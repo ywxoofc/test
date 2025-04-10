@@ -55,7 +55,7 @@
     }
 
     .cards-container {
-      margin-top: 20px;
+      margin-top: 40px; /* Gleicher Abstand wie oben */
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
@@ -129,8 +129,13 @@
 </head>
 <body>
 
+  <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
+  
+  <!-- Copy Button für Hauptscript -->
   <button class="copy-button" onclick="copyCode()">Copy</button>
+
+  <!-- Suchleiste -->
   <input type="text" id="searchInput" class="search-bar" placeholder="Suche nach Spieltitel..." oninput="filterCards()">
 
   <!-- Kartenbereich -->
@@ -200,9 +205,9 @@
         const title = card.getAttribute("data-title").toLowerCase();
         
         if (title.includes(searchInput)) {
-          card.style.display = "flex";
+          card.style.display = "flex";  // Zeige das Element
         } else {
-          card.style.display = "none";
+          card.style.display = "none";  // Verstecke das Element
         }
       });
     }
