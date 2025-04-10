@@ -127,10 +127,6 @@
     <input type="text" class="search-box" id="searchInput" placeholder="Suche nach Titel..." oninput="filterCards()">
   </div>
 
-  <!-- Hauptscript -->
-  <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
-  <button class="copy-button" onclick="copyCode()">Copy</button>
-
   <!-- Kartenbereich -->
   <div class="cards-container" id="cardsContainer">
     <!-- Card 1 -->
@@ -141,7 +137,10 @@
           <div class="card-title">Banana Ride Into Monkey</div>
           <div class="card-desc">Trolling Script<br>Heheheha<br>lulululul<br>eh idk</div>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript(vh)">Copy Script</button>
+        <div class="script-text" style="display:none;">
+          test1
+        </div>
       </div>
     </div>
 
@@ -153,31 +152,40 @@
           <div class="card-title">Spiel 2</div>
           <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript(gh)">Copy Script</button>
+        <div class="script-text" style="display:none;">
+          test2
+        </div>
       </div>
     </div>
 
     <!-- Card 3 -->
-    <div class="card" data-title="Spiel 2">
+    <div class="card" data-title="Spiel 3">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
       <div class="card-content">
         <div>
-          <div class="card-title">Spiel 2</div>
+          <div class="card-title">Spiel 3</div>
           <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript(ah)">Copy Script</button>
+        <div class="script-text" style="display:none;">
+          test3
+        </div>
       </div>
     </div>
 
     <!-- Card 4 -->
-    <div class="card" data-title="Spiel 2">
+    <div class="card" data-title="Spiel 4">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
       <div class="card-content">
         <div>
-          <div class="card-title">Spiel 2</div>
+          <div class="card-title">Spiel 4</div>
           <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢<br>Trolling Script<br>Heheheha</div>
         </div>
-        <button class="copy-button" onclick="copyScript()">Copy Script</button>
+        <button class="copy-button" onclick="copyScript(eh)">Copy Script</button>
+        <div class="script-text" style="display:none;">
+          test4
+        </div>
       </div>
     </div>
   </div>
@@ -185,15 +193,9 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
   <script>
-    function copyCode() {
-      const codeText = document.getElementById("code").innerText;
-      navigator.clipboard.writeText(codeText).then(() => {
-        alert("Copied");
-      });
-    }
-
-    function copyScript() {
-      const scriptText = "test"; // Der Text, der kopiert werden soll
+    function copyScript(button) {
+      const scriptText = button.closest('.card').querySelector('.script-text').innerText;
+      
       navigator.clipboard.writeText(scriptText).then(() => {
         alert("Script kopiert!");
       });
@@ -204,26 +206,22 @@
       const cards = Array.from(document.querySelectorAll('.card'));
       const container = document.getElementById('cardsContainer');
       
-      // Karten filtern
       const filteredCards = cards.filter(card => card.getAttribute('data-title').toLowerCase().includes(searchValue));
       const hiddenCards = cards.filter(card => !card.getAttribute('data-title').toLowerCase().includes(searchValue));
       
-      // Karten ausblenden
       hiddenCards.forEach(card => {
         card.classList.add('hidden');
       });
       
-      // Gefilterte Karten nach oben verschieben und anzeigen
       filteredCards.forEach(card => {
         card.classList.remove('hidden');
-        container.insertBefore(card, container.firstChild); // Verschieben der Karte nach oben
+        container.insertBefore(card, container.firstChild);
       });
       
-      // Wenn nichts gesucht wird, wird die Original-Reihenfolge wiederhergestellt
       if (searchValue === '') {
         hiddenCards.forEach(card => {
           card.classList.remove('hidden');
-          container.appendChild(card); // Wieder in die Originalposition verschieben
+          container.appendChild(card);
         });
       }
     }
