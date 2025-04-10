@@ -55,11 +55,11 @@
     }
 
     .cards-container {
-      margin-top: 40px; /* Gleicher Abstand wie oben */
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;
       max-width: 1200px;
     }
@@ -68,7 +68,7 @@
       background-color: #1e1e1e;
       border-radius: 10px;
       display: flex;
-      width: 32%;
+      width: 30%;
       min-width: 300px;
       padding: 15px;
       gap: 15px;
@@ -131,8 +131,6 @@
 
   <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
-  
-  <!-- Copy Button für Hauptscript -->
   <button class="copy-button" onclick="copyCode()">Copy</button>
 
   <!-- Suchleiste -->
@@ -176,6 +174,19 @@
           <pre><code class="language-lua" id="script3">print("Spiel 3 wird geladen")</code></pre>
         </div>
         <button class="copy-button" onclick="copyScript('script3')">Copy</button>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card" data-title="Spiel 4">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+2" alt="Game 4">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 4</div>
+          <div class="card-desc">fasaffasfasfsfasafs 🫢</div>
+          <pre><code class="language-lua" id="script2">print("Spiel 4 aktiviert!")</code></pre>
+        </div>
+        <button class="copy-button" onclick="copyScript('script2')">Copy</button>
       </div>
     </div>
   </div>
