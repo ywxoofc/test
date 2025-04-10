@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Script Ansicht</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .code-box {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      max-width: 80%;
+      min-width: 300px;
+      color: #00ff88;
+      margin-bottom: 20px;
+    }
+
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .copy-button {
+      background-color: #2a2a2a;
+      padding: 10px 20px;
+      border-radius: 6px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .copy-button:hover {
+      background-color: #444;
+    }
+
+    .views {
+      display: flex;
+      align-items: center;
+      font-size: 1.1em;
+      gap: 8px;
+    }
+
+    .eye-icon {
+      filter: invert(100%);
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="code-box" id="code">print'test'</div>
+
+  <div class="button-row">
+    <button class="copy-button" onclick="copyCode()">Copy</button>
+
+    <div class="views">
+      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/visible.png" class="eye-icon" alt="views">
+      <span id="viewCount">...</span>
+    </div>
+  </div>
+
+  <script>
+    function copyCode() {
+      const codeText = document.getElementById("code").innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        alert("Code kopiert!");
+      });
+    }
+
+    fetch('https://api.countapi.xyz/hit/ywxoscripts/viewpage1')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('viewCount').textContent = data.value;
+      });
+  </script>
+
+</body>
+</html>
