@@ -42,8 +42,26 @@
       background-color: #444;
     }
 
+    .search-container {
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #2a2a2a;
+      color: white;
+    }
+
     .cards-container {
-      margin-top: 60px;
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
@@ -60,6 +78,13 @@
       padding: 15px;
       gap: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .card.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .card img {
@@ -96,6 +121,11 @@
 </head>
 <body>
 
+  <!-- Suchfeld -->
+  <div class="search-container">
+    <input type="text" class="search-box" id="searchInput" placeholder="Suche nach Titel..." oninput="filterCards()">
+  </div>
+
   <!-- Hauptscript -->
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
   <button class="copy-button" onclick="copyCode()">Copy</button>
@@ -103,19 +133,19 @@
   <!-- Kartenbereich -->
   <div class="cards-container">
     <!-- Card 1 -->
-    <div class="card">
+    <div class="card" data-title="Banana Ride Into Monkey">
       <img src="https://tr.rbxcdn.com/180DAY-d3592f0717377abf044daab1b37726b2/512/512/Image/Webp/noFilter" alt="Banana Ride Into Monkey">
       <div class="card-content">
         <div>
           <div class="card-title">Banana Ride Into Monkey</div>
-          <div class="card-desc">Trolling Script\nHeheheha\nlulululul\neh idk</div>
+          <div class="card-desc">Trolling Script<br>Heheheha<br>lulululul<br>eh idk</div>
         </div>
         <button class="copy-button" onclick="copyScript()">Copy Script</button>
       </div>
     </div>
 
     <!-- Card 2 -->
-    <div class="card">
+    <div class="card" data-title="Spiel 2">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
       <div class="card-content">
         <div>
@@ -127,7 +157,7 @@
     </div>
 
     <!-- Card 3 -->
-    <div class="card">
+    <div class="card" data-title="Spiel 2">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
       <div class="card-content">
         <div>
@@ -139,12 +169,12 @@
     </div>
 
     <!-- Card 4 -->
-    <div class="card">
+    <div class="card" data-title="Spiel 2">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
       <div class="card-content">
         <div>
           <div class="card-title">Spiel 2</div>
-          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢\nTrolling Script\nHeheheha\n</div>
+          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢<br>Trolling Script<br>Heheheha</div>
         </div>
         <button class="copy-button" onclick="copyScript()">Copy Script</button>
       </div>
@@ -165,6 +195,19 @@
       const scriptText = "test"; // Der Text, der kopiert werden soll
       navigator.clipboard.writeText(scriptText).then(() => {
         alert("Script kopiert!");
+      });
+    }
+
+    function filterCards() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(searchValue)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
       });
     }
   </script>
