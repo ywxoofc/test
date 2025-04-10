@@ -87,6 +87,7 @@
       color: #ccc;
     }
 
+    /* Anpassen der Lua Code Box */
     .card pre {
       margin-bottom: 10px;
       max-width: 100%;
@@ -94,6 +95,13 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    /* Sicherstellen, dass der Textbereich immer noch genug Platz bietet */
+    .card pre.full-text {
+      white-space: pre-wrap; 
+      overflow: visible;
+      text-overflow: unset;
     }
 
     .card .copy-button {
@@ -118,27 +126,13 @@
         <div>
           <div class="card-title">Banana Ride Into Monkey</div>
           <div class="card-desc">Trolling Script</div>
-          <pre><code class="language-lua" id="script1">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/6977519648.lua"))()</code></pre>
+          <pre><code class="language-lua" id="script1" class="full-text">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/6977519648.lua"))()</code></pre>
         </div>
         <button class="copy-button" onclick="copyScript('script1')">Copy</button>
       </div>
     </div>
 
-
-    <!-- Card 2 -->
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT19G6nC98daXgAvFQIbK3woDOxVvU2wGYZgA&s" alt="Game 1">
-      <div class="card-content">
-        <div>
-          <div class="card-title">Spiel 2</div>
-          <div class="card-desc">PVP-Simulator mit Skript zum cheaten 🫢</div>
-          <pre><code class="language-lua" id="script2">print("Spiel 2 aktiviert!")</code></pre>
-        </div>
-        <button class="copy-button" onclick="copyScript('script2')">Copy</button>
-      </div>
-    </div>
-
-    <!-- Weitere Cards -->
+    <!-- Weitere Karten -->
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
@@ -152,7 +146,7 @@
     }
 
     function copyScript(id) {
-      const codeText = document.getElementById(id).innerText;
+      const codeText = document.getElementById(id).innerText; 
       navigator.clipboard.writeText(codeText).then(() => {
         alert("Script kopiert!");
       });
