@@ -42,8 +42,20 @@
       background-color: #444;
     }
 
+    .search-bar {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      border: none;
+      font-size: 1em;
+    }
+
     .cards-container {
-      margin-top: 60px;
+      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
@@ -56,10 +68,12 @@
       background-color: #1e1e1e;
       border-radius: 10px;
       display: flex;
-      width: 500px;
+      width: 30%;
+      min-width: 300px;
       padding: 15px;
       gap: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
     }
 
     .card img {
@@ -98,16 +112,31 @@
       font-size: 0.9em;
       padding: 6px 14px;
     }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
 
   <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
   <button class="copy-button" onclick="copyCode()">Copy</button>
+  <input type="text" id="searchInput" class="search-bar" placeholder="Suche nach Spieltitel..." oninput="filterCards()">
 
-  <div class="cards-container">
+  <!-- Kartenbereich -->
+  <div class="cards-container" id="cardsContainer">
     <!-- Card 1 -->
-    <div class="card">
+    <div class="card" data-title="Spiel 1">
       <img src="https://tr.rbxcdn.com/180DAY-e89d14696f0275a9a62aaed2c398bdb8/512/512/Image/Webp/noFilter" alt="Game 1">
       <div class="card-content">
         <div>
@@ -120,8 +149,8 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="card">
-      <img src="https://tr.rbxcdn.com/180DAY-81c40ac80217193c5dd972e4e7789785/256/256/Image/Webp/noFilter" alt="Game 2">
+    <div class="card" data-title="Spiel 2">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+2" alt="Game 2">
       <div class="card-content">
         <div>
           <div class="card-title">Spiel 2</div>
@@ -129,6 +158,19 @@
           <pre><code class="language-lua" id="script2">print("Spiel 2 aktiviert!")</code></pre>
         </div>
         <button class="copy-button" onclick="copyScript('script2')">Copy</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card" data-title="Spiel 3">
+      <img src="https://via.placeholder.com/120x120.png?text=Game+3" alt="Game 3">
+      <div class="card-content">
+        <div>
+          <div class="card-title">Spiel 3</div>
+          <div class="card-desc">Das beste Spiel aller Zeiten!</div>
+          <pre><code class="language-lua" id="script3">print("Spiel 3 wird geladen")</code></pre>
+        </div>
+        <button class="copy-button" onclick="copyScript('script3')">Copy</button>
       </div>
     </div>
   </div>
@@ -147,6 +189,21 @@
       const codeText = document.getElementById(id).innerText;
       navigator.clipboard.writeText(codeText).then(() => {
         alert("Script kopiert!");
+      });
+    }
+
+    function filterCards() {
+      const searchInput = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      
+      cards.forEach(card => {
+        const title = card.getAttribute("data-title").toLowerCase();
+        
+        if (title.includes(searchInput)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
       });
     }
   </script>
