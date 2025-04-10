@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Script Ansicht</title>
+
+   <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+
   <style>
     body {
       margin: 0;
@@ -14,25 +17,19 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
-    .code-box {
+    pre {
       background-color: #1e1e1e;
       padding: 20px;
       border-radius: 10px;
       font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      word-wrap: break-word;
       max-width: 80%;
-      min-width: 300px;
-      color: #00ff88;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
       margin-bottom: 20px;
-    }
-
-    .button-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
     }
 
     .copy-button {
@@ -48,33 +45,16 @@
     .copy-button:hover {
       background-color: #444;
     }
-
-    .views {
-      display: flex;
-      align-items: center;
-      font-size: 1.1em;
-      gap: 8px;
-    }
-
-    .eye-icon {
-      filter: invert(100%);
-      width: 20px;
-      height: 20px;
-    }
   </style>
 </head>
 <body>
 
-  <div class="code-box" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()'</div>
+  <pre><code class="language-lua" id="code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ywxoofc/specifier/refs/heads/main/FreeLoader.lua"))()</code></pre>
 
-  <div class="button-row">
-    <button class="copy-button" onclick="copyCode()">Copy</button>
+  <button class="copy-button" onclick="copyCode()">Copy</button>
 
-    <div class="views">
-      <img src="https://img.icons8.com/ios-glyphs/30/ffffff/visible.png" class="eye-icon" alt="views">
-      <span id="viewCount">...</span>
-    </div>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
 
   <script>
     function copyCode() {
@@ -83,12 +63,6 @@
         alert("Copied");
       });
     }
-
-    fetch('https://api.countapi.xyz/hit/ywxoscripts/viewpage1')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('viewCount').textContent = data.value;
-      });
   </script>
 
 </body>
